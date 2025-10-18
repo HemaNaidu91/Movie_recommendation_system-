@@ -45,7 +45,7 @@ else:
 
 
 # Load similarity matrix
-file_url = "https://drive.google.com/uc?export=download&id=1nPoKCr9BRtEJhNldTQlNwdrdEA7cPj4o"
+file_url = "https://www.dropbox.com/scl/fi/hqv9hqvtk3f5fofa7ojbl/similarity.pkl?rlkey=cgf4fpqdotzev1qb8qqtakjwk&st=zt22lp8q&dl=1"
 file_path = "similarity.pkl"
 
 if not os.path.exists(file_path):
@@ -72,6 +72,7 @@ if st.button('Show Recommendation'):
         with col:
             st.text(recommended_movie_names[idx])
             st.image(recommended_movie_posters[idx])
+
 
 
 
