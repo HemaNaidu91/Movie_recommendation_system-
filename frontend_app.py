@@ -6,6 +6,7 @@ import pickle
 import streamlit as st
 import pandas as pd
 import requests
+import os
 
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US"
@@ -44,7 +45,17 @@ else:
 
 
 # Load similarity matrix
-similarity = pickle.load(open("similarity.pkl", "rb"))
+file_url = "https://drive.google.com/file/d/1nPoKCr9BRtEJhNldTQlNwdrdEA7cPj4o/view?usp=sharing"
+file_path = "similarity.pkl"
+
+if not os.path.exists(file_path):
+    response = requests.get(file_url)
+    with open(file_path, "wb") as f:
+        f.write(response.content)
+
+# Then load similarity.pkl as usual
+similarity = pickle.load(open(file_path, "rb"))
+
 
 # Prepare list of movies for selectbox
 movie_list = movies['title'].values
@@ -61,5 +72,6 @@ if st.button('Show Recommendation'):
         with col:
             st.text(recommended_movie_names[idx])
             st.image(recommended_movie_posters[idx])
+
 
 
