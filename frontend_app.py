@@ -7,6 +7,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import os
+os.environ["PORT"] = os.environ.get("PORT", "10000")
 
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US"
@@ -72,6 +73,7 @@ if st.button('Show Recommendation'):
         with col:
             st.text(recommended_movie_names[idx])
             st.image(recommended_movie_posters[idx])
+
 
 
 
